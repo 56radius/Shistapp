@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping List App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Shopping List</h1>
+        <form id="addItemForm">
+            <input type="text" id="itemInput" placeholder="Enter an item" />
+            <input type="submit" value="Add" />
+        </form>
+        <ul id="itemList"></ul>
+    </div>
+
+    <script>
+        // Get the form and list elements
+        const addItemForm = document.getElementById('addItemForm');
+        const itemInput = document.getElementById('itemInput');
+        const itemList = document.getElementById('itemList');
+
+        // Function to add an item to the list
+        function addItem(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const itemText = itemInput.value.trim(); // Get the item text
+            if (itemText !== '') {
+                const listItem = document.createElement('li'); // Create a new list item
+                listItem.innerText = itemText; // Set the text of the list item
+                itemList.appendChild(listItem); // Add the list item to the list
+
+                itemInput.value = ''; // Clear the input field
+                itemInput.focus(); // Set focus back to the input field
+            }
+        }
+
+        // Event listener for form submission
+        addItemForm.addEventListener('submit', addItem);
+    </script>
+</body>
+</html>
